@@ -123,7 +123,7 @@ export default function Home() {
         </div>
 
         {/* Hero Section */}
-        <div className="h-full bg-[url('imgs/herobanner2.png')] bg-cover flex justify-center w-full bg-zinc-900/50">
+        <div className="h-full bg-[url('./imgs/herobanner2.png')] bg-cover flex justify-center w-full bg-zinc-900/50">
           <div className="bg-zinc-950/70 z-10 w-full flex flex-col justify-center items-center">
             <h1 className="font-lobster bg-clip-text bg-[url('imgs/topography.svg')] bg-slate-100/85 text-transparent text-8xl  my-4">Cincinnati Spartans</h1>
 
