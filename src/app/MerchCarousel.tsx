@@ -4,27 +4,11 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import AutoScroll from 'embla-carousel-auto-scroll'
 import Image from 'next/image'
-import {
-  NextButton,
-  PrevButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
 interface AutoScrollOptions {
   stopOnInteraction?: boolean;
   [key: string]: any;
-}
-
-declare module 'embla-carousel' {
-  interface EmblaCarouselType {
-    on(event: 'autoScroll:play' | 'autoScroll:stop' | 'reInit', callback: () => void): void;
-    off(event: 'autoScroll:play' | 'autoScroll:stop' | 'reInit', callback: () => void): void;
-    plugins: () => { autoScroll?: AutoScrollPlugin };
-    'autoScroll:play': void;
-    'autoScroll:stop': void;
-    'reInit': void;
-  }
 }
 
 interface AutoScrollPlugin {
@@ -59,13 +43,6 @@ const MerchCarousel: React.FC<PropType> = (props) => {
     AutoScroll({ playOnInit: true, speed: 2 })
   ])
   const [isPlaying, setIsPlaying] = useState(false)
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
 
   const onButtonAutoplayClick = useCallback(
     (callback: () => void) => {
@@ -118,19 +95,6 @@ const MerchCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div className="relative m-auto w-full h-full">
-      <div className="z-50 absolute ml-4 mt-4 flex justify-between items-center">
-        <div className="embla__buttons">
-          <PrevButton
-            onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
-            disabled={prevBtnDisabled}
-          />
-          <NextButton
-            onClick={() => onButtonAutoplayClick(onNextButtonClick)}
-            disabled={nextBtnDisabled}
-          />
-        </div>
-      </div>
-
       <div className="embla__viewport w-full h-full" ref={emblaRef}>
         <div className="embla__container h-full">
           {products?.map((item, index) => (

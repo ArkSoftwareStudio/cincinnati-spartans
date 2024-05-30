@@ -4,11 +4,6 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import AutoScroll from 'embla-carousel-auto-scroll'
 import Image from 'next/image'
-import {
-  NextButton,
-  PrevButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PauseIcon, PlayIcon } from '@heroicons/react/20/solid'
 
@@ -24,15 +19,20 @@ interface AutoScrollOptions {
 
 declare module 'embla-carousel' {
   interface EmblaCarouselType {
-    on(event: 'autoScroll:play' | 'autoScroll:stop' | 'reInit', callback: () => void): void;
-    off(event: 'autoScroll:play' | 'autoScroll:stop' | 'reInit', callback: () => void): void;
+    scrollPrev: () => void;
+    scrollNext: () => void;
+    canScrollPrev: () => boolean;
+    canScrollNext: () => boolean;
+    on(event: 'reInit' | 'select' | 'autoScroll:play' | 'autoScroll:stop', callback: () => void): void;
+    off(event: 'reInit' | 'select' | 'autoScroll:play' | 'autoScroll:stop', callback: () => void): void;
     plugins: () => { autoScroll?: AutoScrollPlugin };
   }
 
   interface EmblaEventType {
+    'reInit': void;
+    'select': void;
     'autoScroll:play': void;
     'autoScroll:stop': void;
-    'reInit': void;
   }
 }
 
@@ -62,45 +62,37 @@ type PropType = {
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { people } = props;
-  const { options } = props
+  const { people, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     AutoScroll({ playOnInit: true, speed: 0.5 })
-  ])
-  const [isPlaying, setIsPlaying] = useState(false)
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
+  ]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const onButtonAutoplayClick = useCallback(
     (callback: () => void) => {
-      const autoScroll = emblaApi?.plugins()?.autoScroll
-      if (!autoScroll) return
+      const autoScroll = emblaApi?.plugins()?.autoScroll;
+      if (!autoScroll) return;
 
       const resetOrStop =
         autoScroll?.options?.stopOnInteraction === false
           ? autoScroll.reset
-          : autoScroll.stop
+          : autoScroll.stop;
 
-      resetOrStop()
-      callback()
+      resetOrStop();
+      callback();
     },
     [emblaApi]
-  )
+  );
 
   const toggleAutoplay = useCallback(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll
-    if (!autoScroll) return
+    const autoScroll = emblaApi?.plugins()?.autoScroll;
+    if (!autoScroll) return;
 
     const playOrStop = autoScroll.isPlaying()
       ? autoScroll.stop
-      : autoScroll.play
-    playOrStop()
-  }, [emblaApi])
+      : autoScroll.play;
+    playOrStop();
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -123,7 +115,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       emblaApi.off('autoScroll:stop', handleAutoScrollStop);
       emblaApi.off('reInit', handleReInit);
     };
-  }, [emblaApi])
+  }, [emblaApi]);
 
   return (
     <div className="m-auto w-full">
@@ -149,25 +141,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-
-      <div className="mt-4 flex justify-between items-center">
-        <div className="embla__buttons">
-          <PrevButton
-            onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
-            disabled={prevBtnDisabled}
-          />
-          <NextButton
-            onClick={() => onButtonAutoplayClick(onNextButtonClick)}
-            disabled={nextBtnDisabled}
-          />
-        </div>
-
-        <button className="w-10 p-2 h-10 flex justify-center items-center right-0 rounded-full bg-zinc-900/80 transition-all hover:scale-[1.15] hover:bg-zinc-700/80 border font-chakra text-white" onClick={toggleAutoplay} type="button">
-          {isPlaying ? <PauseIcon className='h-4' /> : <PlayIcon />}
-        </button>
-      </div>
     </div>
-  )
+  );
 }
 
-export default EmblaCarousel
+export default EmblaCarousel;
