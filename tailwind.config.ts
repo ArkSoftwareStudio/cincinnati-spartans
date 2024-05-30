@@ -12,9 +12,20 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "topography-pattern" : "url('/src/app/topographicBg.jpg)",
       },
+      fontFamily: {
+        chakra: ['var(--font-chakra)'],
+        lobster: ['var(--font-lobster)'],
+        marker: ['var(--font-marker)']
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-3d'),
+  ],
+  experimental: {
+    optimizeUniversalDefaults: true
+  }
 };
 export default config;
