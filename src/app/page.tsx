@@ -190,7 +190,7 @@ export default function Home() {
                 <div className={`relative h-full w-1/3 flex justify-center items-center text-zinc-700 ${index === 1 ? 'border-x border-sky-500/50' : ''}`} key={index}>
                   <div className="absolute top-1 right-1 w-10 h-10 p-1"> <ArrowUpRightIcon className="stroke-zinc-800" /> </div>
                   <a target="_blank" className="h-full w-full flex justify-center items-center hover:bg-zinc-800/50" href={social.link}>
-                    <FontAwesomeIcon className='w-full text-sky-700 text-7xl' icon={social.icon} />
+                    <FontAwesomeIcon className='text-sky-700 max-w-24 w-24 text-2xl' icon={social.icon} />
                   </a>
                 </div>
               ))
