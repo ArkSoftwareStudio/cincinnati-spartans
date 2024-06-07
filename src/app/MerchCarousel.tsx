@@ -86,7 +86,7 @@ const MerchCarousel: React.FC<PropType> = (props) => {
                 </div>
               </div>
 
-              <div className='flex justify-center grow border-l bg-zinc-950 border-sky-500/50'>
+              <div className='flex h-2/3 lg:h-auto justify-center grow lg:border-l bg-zinc-950 border-sky-500/50'>
                 <Image className='w-3/4' src={item.img} alt='Product Image'></Image>
               </div>
             </div>
