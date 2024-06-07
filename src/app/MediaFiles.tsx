@@ -10,7 +10,7 @@ import CSArmSleeveVar from './imgs/CSArmSleeve.webp'
 import valLogoVar from './imgs/ValorantLogo.svg'
 import rainbowSixVar from './imgs/RainbowSix.svg'
 import overwatchVar from './imgs/Overwatch.svg'
-import razer from './imgs/Razer.svg'
+import razer from './imgs/Razer-cropped.svg'
 import rogue from './imgs/Rogue.svg'
 
 import valShot1 from './imgs/ValorantShot.jpg'

@@ -51,7 +51,7 @@ const MerchCarousel: React.FC<PropType> = (props) => {
     if (!autoplay) return
 
     const playOrStop = autoplay.isPlaying() ? autoplay.stop : autoplay.play
-    playOrStop()  
+    playOrStop()
   }, [emblaApi])
 
   const {
@@ -63,7 +63,7 @@ const MerchCarousel: React.FC<PropType> = (props) => {
 
 
   return (
-    <div  onMouseLeave={resetAutoplay} className="relative m-auto w-full h-full">
+    <div onMouseLeave={resetAutoplay} className="relative m-auto w-full h-full">
       <div className='absolute top-0 w-full h-full flex flex-row justify-between'>
         <div className='w-24 flex flex-col justify-center'>
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
@@ -76,15 +76,16 @@ const MerchCarousel: React.FC<PropType> = (props) => {
       <div className="embla__viewport w-full h-full" ref={emblaRef}>
         <div className="embla__container z-40 h-full select-none">
           {products?.map((item, index) => (
-            <div key={index} className='flex flex-row grow-0 h-full w-full shrink-0 basis-full'>
-              <div className='h-full w-full select-none'>
-                <div className='relative h-full w-2/3 flex flex-col justify-center text-white py-16 px-6'>
-                  <h1 className='font-chakra font-medium text-sky-500 justify-self-center text-9xl'>{item.name}</h1>
-                  <p className='font-chakra font-medium text-white justify-self-center text-2xl mt-8'>${item.price}</p>
-                  <a target='_blank' href={item.productLink} className='flex z-50 font-chakra bottom-5 bg-sky-500 hover:bg-sky-600 p-2 w-fit font-medium text-black text-2xl hover:cursor-pointer'>View Product <ArrowUpRightIcon className='w-4' /> </a>
-                </div>
+            <div key={index} className='flex justify-between flex-col lg:flex-row grow-0 h-full w-full shrink-0 basis-full'>
 
+              <div className='order-last lg:order-first h-full w-full select-none'>
+                <div className='relative h-full w-full lg:w-2/3 flex flex-col justify-center items-center lg:items-start py-16 px-6'>
+                  <h1 className='font-chakra font-medium text-sky-500 justify-self-center lg:text-9xl'>{item.name}</h1>
+                  <p className='font-chakra font-medium text-white justify-self-center lg:text-2xl mt-8'>${item.price}</p>
+                  <a target='_blank' href={item.productLink} className='flex z-50 font-chakra bottom-5 bg-sky-500 hover:bg-sky-600 p-2 w-max lg:w-fit font-medium text-black text-xs lg:text-2xl hover:cursor-pointer'>View Product <ArrowUpRightIcon className='w-2 lg:w-4' /> </a>
+                </div>
               </div>
+
               <div className='flex justify-center grow border-l bg-zinc-950 border-sky-500/50'>
                 <Image className='w-3/4' src={item.img} alt='Product Image'></Image>
               </div>
