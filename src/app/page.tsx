@@ -6,7 +6,6 @@ import { ArrowUpRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from 
 
 import { CSArmSleeve, CSHoodie, CSJerseyFront, DivineStaff, FrazerStaff, KrypticStaff, MindsetStaff, SpadezStaff, csLogo, ValorantLogo, RainbowSix, Overwatch, ValShot1, ValShot2, OverwatchShot, RainbowShot, RainbowShot2, Razer, Rogue } from './MediaFiles';
 
-import EmblaCarousel from "./EmblaCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
 import MerchCarousel from "./MerchCarousel";
 import './embla.css'
@@ -148,7 +147,7 @@ const socials = [
 export default function Home() {
   return (
     <main className="flex min-h-screen grow w-[95vw] border border-t-0 border-b-0 border-sky-500/50 mx-auto flex-col items-center justify-between">
-      <section className="relative z-20 border-b border-sky-500/50 flex flex-col h-[80vh] w-full bg-zinc-900/[0.95]">
+      <section className="relative z-50 border-b border-sky-500/50 flex flex-col h-[80vh] w-full bg-zinc-900/10">
 
         {/*  Navigation */}
         <div className="absolute top-0 w-full h-full">
@@ -171,7 +170,7 @@ export default function Home() {
 
         {/* Hero Section */}
         <div className="h-full bg-[url(imgs/scifiBackground.jpg)] bg-cover bg-center flex justify-center w-full">
-          <div className="bg-zinc-950/50 z-10 w-full flex flex-col justify-center items-center">
+          <div className="bg-zinc-950/50 backdrop-blur-[2px] z-10 w-full flex flex-col justify-center items-center">
             <h1 className="font-lobster bg-clip-text bg-[url('imgs/topography.svg')] bg-slate-100/85 text-transparent text-8xl  my-4">Cincinnati Spartans</h1>
 
             <div className="my-4 flex flex-row space-x-4 justify-between items-center">
