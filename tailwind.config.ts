@@ -18,6 +18,11 @@ const config: Config = {
         chakra: ['var(--font-chakra)'],
         lobster: ['var(--font-lobster)'],
         marker: ['var(--font-marker)']
+      },
+      screens: {
+        tablet : '640px',
+        laptop : '1024px',
+        desktop: '1440px'
       }
     },
   },
